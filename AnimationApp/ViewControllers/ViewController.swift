@@ -13,29 +13,41 @@ class ViewController: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var animationInfoLabel: UILabel!
     
+    var animation = RandomAnimation()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        animation.runRandomAnimation()
+        showAnimationInfo()
     }
 
     @IBAction func runAnimation(_ sender: Any) {
         
-        animationView.animation = Spring.AnimationPreset.allCases.randomElement()?.rawValue ?? ""
-        animationView.curve = Spring.AnimationCurve.allCases.randomElement()?.rawValue ?? ""
-        animationView.force = Double.random(in: 0.01...1.0)
-        animationView.duration = Double.random(in: 1.0...3.0)
-        animationView.delay = Double.random(in: 0.10...0.50)
+        animationView.animation = animation.title
+        animationView.curve = animation.curve
+        animationView.force = animation.force
+        animationView.duration = animation.duration
+        animationView.delay = animation.delay
         animationView.animate()
         
-        animationInfoLabel.text = """
-        preset: \(animationView.animation)
-        curve: \(animationView.curve)
-        force: \(String(format: "%.2f", animationView.force))
-        duration: \(String(format: "%.2f", animationView.duration))
-        delay: \(String(format: "%.2f", animationView.delay))
-        """
-        startButton.setTitle("Run " + animationView.animation, for: .normal)
+        showAnimationInfo()
+        animation.runRandomAnimation()
+        
+        
+        startButton.setTitle("Run " + animation.title, for: .normal)
+        
+        
+        
     }
     
+    private func showAnimationInfo() {
+        animationInfoLabel.text = """
+            preset: \(animation.title)
+            curve: \(animation.curve)
+            force: \(String(format: "%.2f", animationView.force))
+            duration: \(String(format: "%.2f", animationView.duration))
+            delay: \(String(format: "%.2f", animationView.delay))
+        """
+    }
 }
 
