@@ -33,7 +33,6 @@ class ViewController: UIViewController {
         showAnimationInfo()
         animation.runRandomAnimation()
         
-        
         startButton.setTitle("Run " + animation.title, for: .normal)
     }
     
