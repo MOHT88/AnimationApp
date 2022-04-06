@@ -35,9 +35,6 @@ class ViewController: UIViewController {
         
         
         startButton.setTitle("Run " + animation.title, for: .normal)
-        
-        
-        
     }
     
     private func showAnimationInfo() {

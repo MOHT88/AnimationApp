@@ -21,7 +21,6 @@ struct RandomAnimation {
         duration = Double.random(in: 1.0...3.0)
         delay = Double.random(in: 0.10...0.50)
     }
-    
 }
 
 
